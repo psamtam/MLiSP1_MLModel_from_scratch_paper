@@ -1,0 +1,27 @@
+\subsection{Data Description and Notation}
+
+We define the notation as follows: 
+
+The input vector \hbox{\(\mathbf{x} = [x_0, x_1, x_2, \ldots, x_9]^T\)}, where \(x_1, x_2, \ldots, x_9\) are the nine features, and \(x_0 = 1\) is a bias term used to adjust the output.
+
+The output \(y\) is defined differently depending on the model:
+
+For Support Vector Machines (SVM):
+\[
+y = 
+\begin{cases} 
+1 & \text{if it is classified as malignant} \\
+-1 & \text{if it is classified as benign}
+\end{cases}
+\]
+
+For Multi-Layer Perceptrons (MLP):
+\[
+y = 
+\begin{cases} 
+1 & \text{if it is classified as malignant} \\
+0 & \text{if it is classified as benign}
+\end{cases}
+\]
+
+The weight vector for the input vector is denoted as \hbox{\(\mathbf{w}^{(\mathbf{x})} = [w_0, w_1, \ldots, w_9]^T\)}.
