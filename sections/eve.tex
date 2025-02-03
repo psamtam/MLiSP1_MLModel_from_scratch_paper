@@ -1,0 +1,33 @@
+\subsection{Support Vector Machine}
+
+
+Soft SVM can handle the non-linearly separable problems. The aim is to seek a decision boundary that maximises the margin between the two classes. Also, it allows some points to be on the wrong side of the decision boundary. The decision boundary is denoted as:$\mathbf{w}^T\mathbf{x}=0$, where $w_0$ is the bias and $x_0$ is 1. The length of $\mathbf{x}$ and $\mathbf{w}$ are number of features + 1.The distance between data points and the boundary is:$\frac{|\mathbf{w}^T\mathbf{x}|}{||\mathbf{w}||^2}$. The points $\mathbf{x}_n$, $n=(1, \dots, N)$, where $N$ is the total number of instances, need to be classified correctly, which satisfies
+\begin{equation}
+\frac{y_n|\mathbf{w}^T\mathbf{x}|}{||\mathbf{w}||^2}\geq \frac{D}{2} 
+\end{equation} 
+$\frac{|\mathbf{w}^T\mathbf{x}|}{||\mathbf{w}||^2}\geq \frac{D}{2}$ for $y=1$, $\frac{|\mathbf{w}^T\mathbf{x}|}{||\mathbf{w}||^2}\leq -\frac{D}{2}$ for $y=-1$. $y_n$ is the true label of the $n^\text{th}$ instance.
+\begin{equation}
+{y_n|\mathbf{w}^T\mathbf{x}|}\geq \frac{D||\mathbf{w}||^2}{2} 
+\end{equation} 
+Linearly scale the space by setting$\frac{D||\mathbf{w}||^2}{2}=1$, then the margin $D=\frac{2}{||\mathbf{w}||^2}$.With respect to maximising the margin D, which is equivalent to minimising $||\mathbf{w}||^2$.
+The next term to consider is the slack term, which measures the violation for data points. It is denoted as $\xi_n=max(0, v)$, $v=1-y_n|\mathbf{\mathbf{w}}^T\mathbf{\mathbf{x}}|$. In addition, the larger the value of $v$, the larger the distance of wrong points. Therefore, this term needs to be minimised.
+\begin{equation}
+min_\mathbf{w},_\xi=\frac{1}{2}||\mathbf{w}||^2+C\sum_{n=1}^{N} \xi_n \quad s.t.\quad y_n|\mathbf{w}^T\mathbf{x}|+\xi_n\geq 1
+\end{equation}
+$C$ is the hyper parameter to balanced the margin term and slack term. Increasing $C$ leads to the decrease in margin. Finally, we need to minimised $\frac{1}{2}||\mathbf{w}||^2$, which satisfy the condition $ y_n|\mathbf{w}^T\mathbf{x}|+v\geq 1$. 
+If the classification is correct, $v\leq0,\quad y_n|\mathbf{w}^T\mathbf{x}|\geq 1$, otherwise, the classification is incorrect, $v>0,\quad y_n|\mathbf{w}^T\mathbf{x}|< 1$. The loss function is 
+\begin{equation}
+\mathcal{L}(\mathbf{w})= \frac{1}{2}||\mathbf{w}||^2+C\sum_{n=1}^{N} max(0, 1-y_n|\mathbf{w}^T\mathbf{x}|)
+\end{equation}
+The gradient is 
+\begin{align*}
+& \frac{\partial}{\partial \mathbf{w}}(\frac{1}{2}\times||\mathbf{w}||^2+C\times v)\\
+&=\mathbf{w}+\frac{\partial}{\partial \mathbf{w}}C\times (1-y[\mathbf{w}^T\mathbf{x}]) \\
+&=\mathbf{w}-\frac{\partial}{\partial \mathbf{w}}Cy(\mathbf{w}^T\mathbf{x}) \\
+&=\mathbf{w}-Cy\mathbf{x}
+\end{align*}
+The weight is updated by
+\begin{equation}
+  \mathbf{w}=\mathbf{w}-\alpha \times \frac{\partial}{\partial \mathbf{w}}(\mathcal{L}(\mathbf{w}))
+\end{equation}
+$\alpha$ is the learning rate.

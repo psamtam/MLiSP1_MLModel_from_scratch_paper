@@ -1,0 +1,47 @@
+\subsection{Multi-Layer Perceptron}
+
+A Multi-Layer Perceptron (MLP) is a feedforward neural network where interconnected layers of neurons process inputs through linear transformations and non-linear activations. 
+The pre-activation output of layer \(l = 1, 2, \ldots, L\) in an \(L\)-layer network is:
+\begin{equation}
+    \mathbf{z}^{(l)} = W^{(l)}\mathbf{a}^{(l-1)}
+\end{equation}
+where \(\mathbf{W}^{(l)} \in \mathbb{R}^{m \times n}\) is the weight matrix of layer \(l\). \(m\) is the number of nodes in layer \(l\), and \(n\) is that in layer \(l-1\). \(\mathbf{a}^{(l-1)}\) is the post-activation output of layer \(l-1\), denoted as: 
+\begin{equation}
+    \mathbf{a}^{(l)} = 
+    \begin{cases} 
+        \mathbf{x} & \text{if } l = 0 \\ 
+        \sigma(\mathbf{z}^{(l)}) & \text{if } 0 < l \leq L 
+    \end{cases}
+\end{equation}
+
+The sigmoid activation is introduced to provide non-linearity:
+\begin{equation}
+    \sigma(z) = \frac{1}{1 + e^{-z}}
+\end{equation}
+After applying the sigmoid function, the neuron’s output is mapped to a value between 0 and 1, when this output comes from the output layer, it represents the predicted probability of the positive class. While a single-layer perceptron (i.e. \(L=1\)) is equivalent to logistic regression, MLPs extend this by adding hidden layers. The final prediction \( \hat{y} \) in an MLP is computed after passing through all layers, with the output of the last layer as the predicted value:
+\begin{equation}
+    \hat{y} = \mathbf{a}^{(L)} = \sigma(\mathbf{z}^{(L)})
+\end{equation}
+Layer \(L\) consists only one node for binary classification.
+
+The layers of the MLP iteratively apply linear transformations followed by activation functions, allowing the model to learn hierarchical feature representations.  Training minimises the binary cross-entropy loss:
+\begin{equation}
+    \mathcal{L} = -\left[y \log(\hat{y}) + (1 - y) \log(1 - \hat{y})\right]
+\end{equation}
+Gradients for \( W \) are computed via backpropagation using the chain rule:
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial W^{(l)}} = \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial \mathbf{z}^{(L)}} \cdot \frac{\partial \mathbf{z}^{(L)}}{\partial \mathbf{a}^{(L-1)}} \dots \frac{\partial \mathbf{a}^{(l)}}{\partial \mathbf{z}^{(l)}} \cdot \frac{\partial \mathbf{z}^{(l)}}{\partial W^{(l)}}
+\end{equation}
+where:
+\begin{align}
+    \frac{\partial \mathcal{L}}{\partial \hat{y}} &= -\left(\frac{y}{\hat{y}} - \frac{1 - y}{1 - \hat{y}}\right) = \frac{\hat{y}-y}{\hat{y}(1-\hat{y})}\\
+    \frac{\partial \mathbf{a}^{(l)}}{\partial \mathbf{z}^{(l)}} &= \sigma(\mathbf{z}^{(l)})(1 - \sigma(\mathbf{z}^{(l)})) \\
+    \frac{\partial \mathbf{z}^{(l)}}{\partial \mathbf{a}^{(l-1)}} &= W^{(l)\top} \\
+    \frac{\partial \mathbf{z}^{(l)}}{\partial W^{(l)}} &= \mathbf{a}^{(l-1)\top}
+\end{align}
+
+The gradients are used to update the weights and biases using gradient descent:
+\begin{equation}
+    W_{\text{new}}^{(l)} = W_{\text{old}}^{(l)} - \eta \cdot \frac{\partial \mathcal{L}}{\partial W_{\text{old}}^{(l)}}
+\end{equation}
+where \( \eta \) is the learning rate. Momentum helps stabilise updates and speed up learning. By applying forward propagation, activation functions, loss calculation, backpropagation, and momentum, MLPs adapt efficiently to different tasks while capturing complex patterns.

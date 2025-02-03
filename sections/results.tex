@@ -1,2 +1,70 @@
-\section{Results}
+\section{Results}% --- 正文开始 ---
+The equation of the performance metrics are shown below:
+\begin{equation}
+Accuracy=\frac{TN+TP}{TN+FP+FN+TP}
+\end{equation}
+\begin{equation}
+Balanced\,accuracy=\frac{Recall+Specificity}{2}
+\end{equation}
+\begin{equation}
+Precision=\frac{TP}{FP+TP}
+\end{equation}
+\begin{equation}
+Recall (Sensitivity)=\frac{TP}{FN+TP}
+\end{equation}
+\begin{equation}
+Specificity=\frac{TN}{FP+TN}
+\end{equation}
+\begin{equation}
+F1\,Score=2\cdot\frac{Precision\cdot Recall}{Precision+Recall}
+\end{equation}
+Where TP, TN, FP, and FN represent the numbers of true positives, true negatives, false positives, and false negatives cases.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\ & \textbf{SVM Train} & \textbf{MLP Train} \\
+\hline
+Accuracy: &0.9680 &0.9860 \\
+Balanced accuracy: &0.9675  &0.9892 \\
+Precision: &0.9444  &0.9617 \\ 
+Recall (Sensitivity): &0.9659 &1.0000 \\
+Specificity: &0.9691 &0.9784  \\
+F1 Score: &0.9551 &0.9805 \\
+\hline
+\end{tabular}
+\caption{Performance metrics of the SVM model and the MLP model on the Training set.}
+\label{tab:example1}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\ & \textbf{SVM Test} & \textbf{MLP Test} \\
+\hline
+Accuracy: &0.9617 &0.9727\\
+Balanced accuracy:  &0.9671 &0.9792\\
+Precision:  &0.9118 &0.9265\\ 
+Recall (Sensitivity):  &0.9841 &1.0000\\
+Specificity:  &0.9500 &0.9583\\
+F1 Score:  &0.9466 &0.9618\\
+\hline
+\end{tabular}
+\caption{Performance metrics of the SVM model and the MLP model on the Test set.}
+\label{tab:example2}
+\end{table}
+
+Accuracy and balanced accuracy are measured the correct prediction cases among all cases, balanced accuracy are more suitable for the imbalanced data. These two results are almost same, so it is not necessarily to processed the data imbalanced. After all, it does not affect the performance of the model. 
+Precision are the true positive cases among all predicted positive cases, which means the predicted positive class is accurate. 
+Recall is the predicted positive predictions among all real positive cases, which means we do not want to miss the true positive cases. 
+F1 score is to compare the methods by considering precision and recall. So this score is close to 1, which means both precision and recall are good.   
+Specificity is to measure the predicted negative cases among all real negative cases, which can show the ability of model in classify the negative cases. 
+From table \ref{tab:example1} and \ref{tab:example2} , both SVM and MLP performance good on the training set and test set. However, the performance of MLP model is better than SVM based on the metrics. The reason for this is related to the data imbalance and SVM is more suitable for handling the dataset that features have clear class boundaries with little overlap.
+
+
+
+
 
