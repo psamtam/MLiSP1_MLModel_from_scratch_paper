@@ -1,3 +1,11 @@
 \section{Conclusions}
 
-Write your conclusions here.
+In conclusion, both SVM and MLP perform well in classifying breast cancer tumours, achieving an accuracy over \(96\%\). The MLP slightly outperforms SVM by approximately \(1\%\) in terms of accuracy with a \(100\%\) recall. These findings suggest that MLP may be a more effective choice for breast cancer tumours classification, although further research is needed to address the limitations. 
+
+Interpretability is a significant limitation of both SVM and MLP models. For the SVM model, it relies on support vectors (the points on the margin) to define the decision boundary, which results in the decision-making process being hard to interpret. Although soft SVM allows some misclassified data points to fall within the margin, non-support vectors do not affect the decision boundary. Similarly, the use of non-linear activation functions and the complexity of MLP contributes to the lack of interpretability.
+
+Additionally, the soft SVM has a slack term which can work with the non-linear separable dataset. The decision boundary is still linear. If the dataset has a complicated non-linear distribution, kernel SVM \cite{Rao2022efficient} is better. While, kernel SVM maps data to a higher-dimensional space using the Kernel Trick to find the decision hyperplane. Due to the fact that this mapping is usually nonlinear, it also makes the decision process harder to interpret. 
+
+Moreover, the MLP model uses the sigmoid activation function in the hidden layer, and the selection of activation functions can significantly affect the model's performance \cite{DUBEY202292}.
+
+As a result, future research should focus on improving interpretability in soft SVM, kernel SVM, and MLP models. A highly interpretable model helps us understand the specific reasons behind its decisions, particularly in the medical field, where doctors need to know why a model reaches a particular conclusion. Future studies could also investigate the effect of different activation functions in MLP. 

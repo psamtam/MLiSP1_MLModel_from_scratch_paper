@@ -24,7 +24,7 @@ Where TP, TN, FP, and FN represent the numbers of true positives, true negatives
 \centering
 \begin{tabular}{|c|c|c|}
 \hline
-\ & \textbf{SVM Train} & \textbf{MLP Train} \\
+\ & \textbf{SVM} & \textbf{MLP} \\
 \hline
 Accuracy: &0.9680 &0.9860 \\
 Balanced accuracy: &0.9675  &0.9892 \\
@@ -43,7 +43,7 @@ F1 Score: &0.9551 &0.9805 \\
 \centering
 \begin{tabular}{|c|c|c|}
 \hline
-\ & \textbf{SVM Test} & \textbf{MLP Test} \\
+\ & \textbf{SVM} & \textbf{MLP} \\
 \hline
 Accuracy: &0.9617 &0.9727\\
 Balanced accuracy:  &0.9671 &0.9792\\
@@ -57,12 +57,12 @@ F1 Score:  &0.9466 &0.9618\\
 \label{tab:example2}
 \end{table}
 
-Accuracy and balanced accuracy are measured the correct prediction cases among all cases, balanced accuracy are more suitable for the imbalanced data. These two results are almost same, so it is not necessarily to processed the data imbalanced. After all, it does not affect the performance of the model. 
+Accuracy and balanced accuracy measure the correct prediction cases among all cases, while balanced accuracy are more suitable for the imbalanced data. These two results are almost same, so it is not necessarily to process the data imbalanced. After all, it does not affect the performance of the model. 
 Precision are the true positive cases among all predicted positive cases, which means the predicted positive class is accurate. 
 Recall is the predicted positive predictions among all real positive cases, which means we do not want to miss the true positive cases. 
 F1 score is to compare the methods by considering precision and recall. So this score is close to 1, which means both precision and recall are good.   
 Specificity is to measure the predicted negative cases among all real negative cases, which can show the ability of model in classify the negative cases. 
-From table \ref{tab:example1} and \ref{tab:example2}, both SVM and MLP performance good on the training set and test set. However, the performance of MLP model is better than SVM based on the metrics. The reason for this is related to the data imbalance and SVM is more suitable for handling the dataset that features have clear class boundaries with little overlap.
+From \cref{tab:example1} and \cref{tab:example2}, both SVM and MLP perform good on the training set and test set. However, the performance of MLP model is better than SVM based on the metrics. The reasons for this are related to the data imbalance and SVM is more suitable for handling the dataset that features have clear class boundaries with little overlap.
 
 
 
